@@ -40,9 +40,14 @@ describe('1', () => {
             </MemoryRouter>
         );
 
-        const { getByText } = render(component);
+        const { getByText, container } = render(component);
 
         await waitForElementToBeRemoved(() => getByText(`LOADING`));
+
+        const list = container.querySelectorAll('.ProductItem-Name');
+        const xxx = Array.from(list).map(el => el.textContent);
+
+        expect(xxx).toEqual(['a;df', 'sdf'])
 
         screen.logTestingPlaygroundURL();
     });
