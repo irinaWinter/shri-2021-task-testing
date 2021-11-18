@@ -15,46 +15,46 @@ describe('Simple Test Case', () => {
     });
 });
 
-function mockResponse<T>(data: T): AxiosResponse<T, any> {
-    return {
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config: {},
-        data,
-    }
-}
+// function mockResponse<T>(data: T): AxiosResponse<T, any> {
+//     return {
+//         status: 200,
+//         statusText: 'OK',
+//         headers: {},
+//         config: {},
+//         data,
+//     }
+// }
 
-describe('1', () => {
-    it('В каталоге должны отображаться товары, список которых приходит с сервера', async () => {
-        const api = new ExampleApi('');
-        api.getProducts = () => Promise.resolve<AxiosResponse<ProductShortInfo[]>>(
-            mockResponse([
-                { id: 123, name: 'a;df', price: 890 },
-                { id: 124, name: 'sdf', price: 234 },
-            ])
-        );
+// describe('1', () => {
+//     it('В каталоге должны отображаться товары, список которых приходит с сервера', async () => {
+//         const api = new ExampleApi('');
+//         api.getProducts = () => Promise.resolve<AxiosResponse<ProductShortInfo[]>>(
+//             mockResponse([
+//                 { id: 123, name: 'a;df', price: 890 },
+//                 { id: 124, name: 'sdf', price: 234 },
+//             ])
+//         );
 
-        const cart = new CartApi();
-        const store = initStore(api, cart);
+//         const cart = new CartApi();
+//         const store = initStore(api, cart);
 
-        const component = (
-            <MemoryRouter>
-                <Provider store={store}>
-                    <Catalog />
-                </Provider>
-            </MemoryRouter>
-        );
+//         const component = (
+//             <MemoryRouter>
+//                 <Provider store={store}>
+//                     <Catalog />
+//                 </Provider>
+//             </MemoryRouter>
+//         );
 
-        const { getByText, container } = render(component);
+//         const { getByText, container } = render(component);
 
-        await waitForElementToBeRemoved(() => getByText(`LOADING`));
+//         await waitForElementToBeRemoved(() => getByText(`LOADING`));
 
-        const list = container.querySelectorAll('.ProductItem-Name');
-        const xxx = Array.from(list).map(el => el.textContent);
+//         const list = container.querySelectorAll('.ProductItem-Name');
+//         const xxx = Array.from(list).map(el => el.textContent);
 
-        expect(xxx).toEqual(['a;df', 'sdf'])
+//         expect(xxx).toEqual(['a;df', 'sdf'])
 
-        screen.logTestingPlaygroundURL();
-    });
-})
+//         screen.logTestingPlaygroundURL();
+//     });
+// })
