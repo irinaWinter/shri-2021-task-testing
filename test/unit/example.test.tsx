@@ -9,6 +9,12 @@ import { MemoryRouter } from 'react-router';
 import { AxiosResponse } from 'axios';
 import { ProductShortInfo } from '../../src/common/types';
 
+describe('Simple Test Case', () => {
+    it('Should return 4', () => {
+        expect(2 + 2).toBe(4);
+    });
+});
+
 function mockResponse<T>(data: T): AxiosResponse<T, any> {
     return {
         status: 200,
